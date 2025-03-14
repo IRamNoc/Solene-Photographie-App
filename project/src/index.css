@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Anastasia';
+  src: url('/fonts/Anastasia.woff2') format('woff2'),
+       url('/fonts/Anastasia.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Perandory';
+  src: url('/fonts/Perandory.woff2') format('woff2'),
+       url('/fonts/Perandory.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: 'Perandory', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.1em;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-white text-[#998e79] overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply text-[#998e79] text-sm tracking-[0.3em] hover:text-[#ff5f5f] transition-colors;
+  }
+
+  .nav-link.active {
+    @apply text-[#ff5f5f];
+  }
+}
+
+/* Hide scrollbar */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth scroll behavior */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+}
+
+@media (min-width: 769px) {
+  .container {
+    @apply px-8;
+  }
+}
+
+/* Custom transitions */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Header transitions */
+.header-shrink {
+  @apply py-2 bg-white/95 backdrop-blur-sm shadow-sm;
+}
+
+.header-expand {
+  @apply py-4 bg-white;
+}
+
+/* Text styles */
+.text-spaced {
+  letter-spacing: 0.3em;
+}
+
+.text-title {
+  letter-spacing: 0.2em;
+  line-height: 1.4;
+}
