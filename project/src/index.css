@@ -12,9 +12,9 @@
 }
 
 @font-face {
-  font-family: 'Perandory';
-  src: url('/fonts/Perandory.woff2') format('woff2'),
-       url('/fonts/Perandory.woff') format('woff');
+  font-family: 'PerandoryCondensed';
+  src: url('/fonts/perandory-condensed.woff2') format('woff2'),
+       url('/fonts/perandory-condensed.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -22,7 +22,7 @@
 
 @layer base {
   html {
-    font-family: 'Perandory', serif;
+    font-family: 'PerandoryCondensed', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: 0.1em;

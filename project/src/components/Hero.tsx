@@ -15,8 +15,8 @@ const Hero = () => {
     {
       id: 'mariage',
       title: 'MARIAGE',
-      color: '#ff5f5f',
-      hoverColor: '#ff96bf',
+      color: '#f15c5c',
+      hoverColor: '#ffc3e2',
       link: '/prestations#mariage'
     },
     {
@@ -27,18 +27,18 @@ const Hero = () => {
       link: '/prestations#famille'
     },
     {
+      id: 'maternite',
+      title: 'MATERNITÉ',
+      color: '#ffc3e2',
+      hoverColor: '#f15c5c',
+      link: '/prestations#maternite'
+    },
+    {
       id: 'naissance',
       title: 'NAISSANCE',
       color: '#97d5e6',
-      hoverColor: '#ffffff',
+      hoverColor: '#ebf3f7',
       link: '/prestations#naissance'
-    },
-    {
-      id: 'maternite',
-      title: 'MATERNITÉ',
-      color: '#ff96bf',
-      hoverColor: '#ff5f5f',
-      link: '/prestations#maternite'
     },
     {
       id: 'autres',
@@ -252,7 +252,7 @@ const Hero = () => {
           </motion.h2>
 
           {/* Grid : Colle aux bords de l'écran mais garde un espacement interne */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 w-full">
             {services.map((service, index) => (
               <Link
                 key={service.id}
@@ -269,13 +269,13 @@ const Hero = () => {
                 >
                   {/* Texte avec soulignement animé */}
                   <h3
-                    className="font-perandory text-2xl md:text-3xl tracking-wider transition-colors relative inline-block"
+                    className="font-perandory text-5xl md:text-6xl tracking-wider transition-colors relative inline-block"
                     style={{ color: service.hoverColor }}
                   >
                     {service.title}
                     {/* Barre animée sous le texte */}
                     <motion.div
-                      className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"
+                      className="absolute left-0 bottom-0 h-1 w-full scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"
                       style={{ backgroundColor: service.hoverColor }}
                     />
                   </h3>
@@ -287,8 +287,8 @@ const Hero = () => {
           <div className="mt-8 text-center">
             <Link
               to="/prestations"
-              className="inline-block bg-[#ff96bf] text-white font-perandory px-8 py-3 rounded-full hover:bg-[#ff5f5f] transition-colors"
-            >
+              className="inline-block bg-[#ffc3e2] text-white font-perandory text-2xl px-10 py-3 rounded-full hover:bg-[#ff5f5f] transition-colors"
+              >
               EN VOIR PLUS
             </Link>
           </div>

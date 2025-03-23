@@ -34,64 +34,67 @@ const Header = () => {
   };
 
   return (
-    <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'py-2 bg-white/95 backdrop-blur-sm shadow-sm' : 'py-4 bg-white'
-      }`}
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'pb-2 bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white'
+        }`}
     >
+      {/* --- Barre d’annonce --- */}
+      <div className="w-full bg-[#e6dcc7] overflow-hidden relative h-[48px]">
+        <div className="absolute whitespace-nowrap animate-marquee-reverse text-[#998e79] text-lg md:text-xl lg:text-2xl py-3 px-4 font-perandory">
+          -15% pour la formule Naissance et Maternité — Offre valable jusqu'au 30 avril — Réservez maintenant !
+        </div>
+      </div>
       <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center">
-          <Link 
-            to="/" 
-            className={`transition-all duration-300 ${isScrolled ? 'mb-2' : 'mb-4'}`}
-          >
-            <h1 className={`font-perandory text-[#998e79] tracking-[0.3em] text-center transition-all duration-300 ${
-              isScrolled ? 'text-2xl' : 'text-3xl md:text-4xl'
-            }`}>
+
+        {/* === Logo et Photographie === */}
+        <div
+          className={`overflow-hidden transition-all duration-700 ease-in-out ${isScrolled ? 'max-h-0 opacity-0' : 'max-h-40 opacity-100'
+            }`}
+        >
+          <Link to="/" className="block text-center">
+            <h1 className="font-perandory font-medium text-[#998e79] tracking-[0.05em] pt-7 text-4xl md:text-6xl">
               SOLENE TERMEAU
             </h1>
-            <p className={`text-center font-['Great_Vibes'] text-[#998e79] mt-1 transition-all duration-300 ${
-              isScrolled ? 'text-xl' : 'text-2xl md:text-3xl'
-            }`}>
+            <p className="font-['Pinyon_Script'] text-[#998e79] pb-3 text-2xl md:text-1.7xl">
               Photographie
             </p>
           </Link>
-
-          {/* Navigation */}
-          <nav className="w-full">
-            <div 
-              ref={menuRef}
-              onWheel={handleWheel}
-              className="overflow-x-auto hide-scrollbar scroll-smooth"
-              style={{ 
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-              }}
-            >
-              <ul className="flex justify-center space-x-8 md:space-x-16 min-w-max px-4 py-2">
-                {menuItems.map(({ path, label }) => (
-                  <li key={path} className="relative">
-                    <Link
-                      to={path}
-                      className="text-[#998e79] text-sm tracking-[0.3em] transition-colors"
-                      onMouseEnter={() => setHoveredItem(path)}
-                      onMouseLeave={() => setHoveredItem(null)}
-                    >
-                      {label}
-                      {(location.pathname === path || hoveredItem === path) && (
-                        <motion.div
-                          layoutId="activeIndicator"
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ff96bf]"
-                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                        />
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </nav>
         </div>
+
+        {/* === Navigation === */}
+        <nav className="w-full mt-2">
+          <div
+            ref={menuRef}
+            onWheel={handleWheel}
+            className="overflow-x-auto hide-scrollbar scroll-smooth"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none'
+            }}
+          >
+            <ul className="flex justify-center space-x-8 md:space-x-16 min-w-max px-4 py-2">
+              {menuItems.map(({ path, label }) => (
+                <li key={path} className="relative">
+                  <Link
+                    to={path}
+                    className="font-perandory text-[#998e79] text-xl md:text-2xl tracking-[0.05em] transition-colors whitespace-nowrap"
+                    onMouseEnter={() => setHoveredItem(path)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    {label}
+                    {(location.pathname === path || hoveredItem === path) && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute -bottom-1 left-0 right-0 h-1 bg-[#ff96bf]"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
       </div>
     </header>
   );

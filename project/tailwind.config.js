@@ -3,6 +3,15 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      keyframes: {
+        marqueeReverse: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
+      animation: {
+        'marquee-reverse': 'marqueeReverse 20s linear infinite',
+      },
       colors: {
         'coral': '#ff5f5f',
         'pink': '#ff96bf',
@@ -14,7 +23,7 @@ export default {
         'text': '#998e79'
       },
       fontFamily: {
-        'perandory': ['Perandory', 'serif'],
+        'perandory': ['PerandoryCondensed', 'serif'],
         'anastasia': ['Anastasia', 'cursive']
       },
       height: {
