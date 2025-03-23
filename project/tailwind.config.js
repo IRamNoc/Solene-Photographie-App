@@ -4,13 +4,13 @@ export default {
   theme: {
     extend: {
       keyframes: {
-        marqueeReverse: {
+        marqueeRight: {
           '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(100vw)' },
         },
       },
       animation: {
-        'marquee-reverse': 'marqueeReverse 20s linear infinite',
+        'marquee-right': 'marqueeRight 25s linear infinite',
       },
       colors: {
         'coral': '#ff5f5f',

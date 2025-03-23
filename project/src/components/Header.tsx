@@ -35,12 +35,12 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'pb-2 bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white'
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-white'
         }`}
     >
-      {/* --- Barre d’annonce --- */}
-      <div className="w-full bg-[#e6dcc7] overflow-hidden relative h-[48px]">
-        <div className="absolute whitespace-nowrap animate-marquee-reverse text-[#998e79] text-lg md:text-xl lg:text-2xl py-3 px-4 font-perandory">
+      {/* --- Barre d’annonce défilante --- */}
+      <div className="w-full bg-[#e6dcc7] overflow-hidden relative h-[40px]">
+        <div className="absolute whitespace-nowrap animate-marquee-right text-[#998e79] text-lg md:text-0.2xl lg:text-0.2xl py-2 px-1 font-perandory">
           -15% pour la formule Naissance et Maternité — Offre valable jusqu'au 30 avril — Réservez maintenant !
         </div>
       </div>
@@ -72,26 +72,33 @@ const Header = () => {
               msOverflowStyle: 'none'
             }}
           >
-            <ul className="flex justify-center space-x-8 md:space-x-16 min-w-max px-4 py-2">
-              {menuItems.map(({ path, label }) => (
-                <li key={path} className="relative">
-                  <Link
-                    to={path}
-                    className="font-perandory text-[#998e79] text-xl md:text-2xl tracking-[0.05em] transition-colors whitespace-nowrap"
-                    onMouseEnter={() => setHoveredItem(path)}
-                    onMouseLeave={() => setHoveredItem(null)}
-                  >
-                    {label}
-                    {(location.pathname === path || hoveredItem === path) && (
-                      <motion.div
-                        layoutId="activeIndicator"
-                        className="absolute -bottom-1 left-0 right-0 h-1 bg-[#ff96bf]"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                      />
-                    )}
-                  </Link>
-                </li>
-              ))}
+            <ul className="flex justify-center space-x-8 md:space-x-16 min-w-max px-4 py-1">
+              {menuItems.map(({ path, label }) => {
+                const isActive = location.pathname === path;
+                const isHovered = hoveredItem === path;
+
+                return (
+                  <li key={path} className="relative">
+                    <Link
+                      to={path}
+                      className="font-perandory text-[#998e79] text-xl md:text-2xl tracking-[0.05em] transition-colors whitespace-nowrap"
+                      onMouseEnter={() => setHoveredItem(path)}
+                      onMouseLeave={() => setHoveredItem(null)}
+                    >
+                      {label}
+                      {(isHovered || (!hoveredItem && isActive)) && (
+                        <motion.div
+                          className="absolute -bottom-1 left-0 right-0 h-1 bg-[#ff96bf]"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </nav>
