@@ -63,75 +63,65 @@ const Hero = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="grid grid-cols-1 md:grid-cols-12 min-h-screen">
-        {/* Left Side */}
-        <div className="md:col-span-7 bg-[#ff5f5f] relative min-h-[60vh] md:min-h-screen">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              className="bg-[#ff96bf] rounded-full w-[90vw] h-[90vw] md:w-[80%] md:h-[80%] flex items-center justify-center transform -translate-y-8"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <h1 className="font-perandory text-[#ff5f5f] text-4xl md:text-6xl text-center leading-tight tracking-wider">
-                "CAPTURER<br />VOS JOURS HEUREUX"
-              </h1>
-            </motion.div>
-          </div>
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 bg-[#ff8c22] py-6 md:py-8"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <div className="container mx-auto px-4 md:px-8">
-              <Link to="/prestations" className="flex items-center text-[#fff27e] group">
-                <div className="flex flex-col">
-                  <span className="font-perandory text-2xl md:text-3xl tracking-wider">DÉCOUVRIR</span>
-                  <span className="font-perandory text-2xl md:text-3xl tracking-wider">LES PRESTATIONS</span>
-                </div>
-                <span className="ml-auto text-2xl md:text-3xl transform group-hover:translate-x-2 transition-transform">→</span>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Right Side */}
-        <div className="md:col-span-5 grid grid-rows-3 min-h-[40vh] md:min-h-screen">
-          <motion.div
-            className="bg-[#97d5e6] row-span-1 relative overflow-hidden"
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <div className="absolute w-16 md:w-24 h-12 md:h-16 bg-white rounded-[100%] top-1/4 left-1/4 animate-float" />
-          </motion.div>
-          <motion.div
-            className="bg-[#fff27e] row-span-1 flex items-center justify-center overflow-hidden"
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <span className="font-perandory text-6xl md:text-9xl text-[#abcf5a] opacity-20">ST.</span>
-          </motion.div>
-          <motion.div
-            className="bg-[#abcf5a] row-span-1 relative overflow-hidden"
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-          >
-            <div className="absolute bottom-0 left-0 right-0 bg-[#97d5e6]/90 py-8 md:py-12">
-              <div className="container mx-auto px-4 md:px-8">
-                <Link to="/gallery" className="flex items-center text-white group">
-                  <div className="flex flex-col">
-                    <span className="font-perandory text-2xl md:text-3xl tracking-wider">VISITER</span>
-                    <span className="font-perandory text-2xl md:text-3xl tracking-wider">LA GALERIE</span>
-                  </div>
-                  <span className="ml-auto text-2xl md:text-3xl transform group-hover:translate-x-2 transition-transform">→</span>
-                </Link>
+      <section className="w-full font-perandory mt-[150px]">
+        <div className="grid grid-cols-12 min-h-screen">
+          {/* Colonne gauche */}
+          <div className="col-span-5 flex flex-col">
+            <div className="aspect-square bg-[#ff5f5f] flex items-center justify-center">
+              <div className="w-[80%] aspect-square bg-[#ff96bf] rounded-full flex items-center justify-center">
+                <h1 className="text-[#ff5f5f] text-2xl md:text-4xl lg:text-5xl text-center leading-tight tracking-wider">
+                  "CAPTURER<br />VOS JOURS HEUREUX"
+                </h1>
               </div>
             </div>
-          </motion.div>
+
+            <div className="bg-[#ff8c22] flex-1 flex items-center justify-center">
+              <Link to="/prestations" className="text-[#fff27e] text-2xl md:text-3xl lg:text-4xl text-center leading-tight tracking-wider group">
+                <div>
+                  <p>DÉCOUVRIR</p>
+                  <p>LES PRESTATIONS <span className="inline-block group-hover:translate-x-1 transition-transform">→</span></p>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* Colonne droite */}
+          <div className="col-span-7 flex flex-col">
+            <div className="flex h-1/2 min-h-[50%]">
+              <div className="w-1/2 relative">
+                <img
+                  src="/images/IMG_2111.JPG"
+                  alt="Nuages"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-1/2 bg-[#fff27e] flex items-center justify-center">
+                <span className="text-[#abcf5a] text-6xl md:text-8xl lg:text-9xl opacity-20">ST.</span>
+              </div>
+            </div>
+
+            <div className="h-[60px] bg-[#abcf5a] w-full" />
+
+            <div className="flex-1 bg-[#97d5e6] flex items-center justify-between px-6 py-8 gap-6">
+              <Link to="/gallery" className="text-white text-2xl md:text-3xl lg:text-4xl text-left leading-tight tracking-wide group">
+                <div>
+                  <p>VISITER</p>
+                  <p>LA GALERIE <span className="inline-block group-hover:translate-x-1 transition-transform">→</span></p>
+                </div>
+              </Link>
+
+              <div className="relative w-28 h-44 md:w-32 md:h-48 rounded-md overflow-hidden shadow-lg">
+                <img
+                  src="/images/IMG_2111.JPG"
+                  alt="Miniature"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-2 right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow">
+                  <span className="text-[#ff96bf] text-sm">♥</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -288,7 +278,7 @@ const Hero = () => {
             <Link
               to="/prestations"
               className="inline-block bg-[#ffc3e2] text-white font-perandory text-2xl px-10 py-3 rounded-full hover:bg-[#ff5f5f] transition-colors"
-              >
+            >
               EN VOIR PLUS
             </Link>
           </div>
