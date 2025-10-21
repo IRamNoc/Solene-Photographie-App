@@ -6,11 +6,11 @@ const CGV: React.FC = () => {
       {/* Header */}
       <div className="bg-gray-100 py-16 mt-40">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">
+          <h1 className="text-4xl font text-center text-gray-900 mb-8">
             Conditions Générales de Vente
           </h1>
           <p className="mt-4 text-lg text-gray-600 text-center font-playfair">
-            Solène TRM Photographie
+            Solène_Trm Photographie
           </p>
         </div>
       </div>
@@ -223,7 +223,7 @@ const CGV: React.FC = () => {
       <div className="bg-gray-50 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-gray-500 font-playfair">
-            © 2024 Solène TRM Photographie - Tous droits réservés
+            © 2024 Solène_Trm Photographie - Tous droits réservés
           </p>
         </div>
       </div>
