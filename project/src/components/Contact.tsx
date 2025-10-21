@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Upload, X } from 'lucide-react';
+import { FORMSPREE_CONFIG } from '../config/formspree';
 
 type FormData = {
   firstName: string;
@@ -16,7 +17,7 @@ type FormData = {
 };
 
 const MAX_IMAGES = 10;
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB (Basin limit)
 
 const pageTransition = {
   initial: { opacity: 0, y: 20 },
@@ -25,55 +26,71 @@ const pageTransition = {
   transition: { duration: 0.6 }
 };
 
-// Import services data from Services component
+// Import services data from current prestations data with colors
 const services = [
   {
     id: 'mariage',
     title: 'Mariage',
+    color: 'bg-[#f86d6d]',
+    textColor: 'text-[#fdd7e0]',
     packages: [
-      { name: 'Classique', price: '900€' },
-      { name: 'Signature', price: '1200€' },
-      { name: 'HÉRITAGE', price: '1500€' },
-      { name: 'Formule étendue', price: '1700€' }
+      { name: 'Essentiel', price: '400€' },
+      { name: 'Classique', price: '1 250€' },
+      { name: 'Signature', price: '1 500€' },
+      { name: 'Prestige', price: '1 900€' }
     ]
   },
   {
-    id: 'engagement',
-    title: 'Engagement',
+    id: 'shooting',
+    title: 'Shooting',
+    color: 'bg-[#ffc3e2]',
+    textColor: 'text-[#f86d6d]',
     packages: [
-      { name: 'EXPECTING', price: '130€' }
-    ]
-  },
-  {
-    id: 'maternite',
-    title: 'Maternité',
-    packages: [
-      { name: 'EXPECTING', price: '130€' }
-    ]
-  },
-  {
-    id: 'naissance',
-    title: 'Naissance',
-    packages: [
-      { name: 'Bienvenue au monde', price: '75€' },
-      { name: 'Jolis souvenirs', price: '130€' }
+      { name: 'Flash', price: '70€' },
+      { name: 'Classique', price: '90€' },
+      { name: 'Reportage', price: '150€' },
+      { name: 'Éditorial', price: '150€' }
     ]
   },
   {
     id: 'famille',
     title: 'Famille',
+    color: 'bg-[#aad8e0]',
+    textColor: 'text-[#ebf3f7]',
     packages: [
-      { name: 'Photo de famille', price: '75€' },
-      { name: 'Jolis souvenirs', price: '130€' },
-      { name: 'Reportage', price: '300€' }
+      { name: 'Photo de famille', price: '70€' },
+      { name: 'Reportage', price: '150€' }
+    ]
+  },
+  {
+    id: 'evenementiel',
+    title: 'Événementiel',
+    color: 'bg-[#f1bb45]',
+    textColor: 'text-[#fdf6b8]',
+    packages: [
+      { name: 'Instant', price: '200€' },
+      { name: 'Soirée', price: '350€' },
+      { name: 'Journée', price: '450€' }
+    ]
+  },
+  {
+    id: 'professionnel',
+    title: 'Professionnel',
+    color: 'bg-[#fdf6b8]',
+    textColor: 'text-[#f1bb45]',
+    packages: [
+      { name: 'Professionnel', price: '150€' }
     ]
   },
   {
     id: 'autres',
     title: 'Autres services',
+    color: 'bg-[#ada133]',
+    textColor: 'text-[#fdf6b8]',
     packages: [
-      { name: 'Promesse', price: '75€' },
-      { name: 'Blooming', price: '75€' }
+      { name: 'Cartes cadeaux', price: '50€ - 70€ - 100€' },
+      { name: 'Options supplémentaires', price: 'Tarifs variables' },
+      { name: 'Formule sur mesure', price: 'Sur devis' }
     ]
   }
 ];
@@ -146,7 +163,7 @@ const Contact = () => {
 
     const validFiles = files.filter(file => {
       if (file.size > MAX_FILE_SIZE) {
-        setImageError('Certains fichiers dépassent la limite de 5MB');
+        setImageError('Certains fichiers dépassent la limite de 100MB');
         return false;
       }
       if (!file.type.startsWith('image/')) {
@@ -182,8 +199,8 @@ const Contact = () => {
     }
     if (!formData.phone.trim()) newErrors.phone = 'Le téléphone est requis';
     if (!formData.location.trim()) newErrors.location = 'La localisation est requise';
-    if (formData.services.length === 0) newErrors.services = 'Sélectionnez au moins une formule';
-    if (formData.selectedPackages.length === 0) newErrors.selectedPackages = 'Sélectionnez au moins une formule spécifique';
+    if (formData.services.length === 0) newErrors.services = ['Sélectionnez au moins une formule'];
+    if (formData.selectedPackages.length === 0) newErrors.selectedPackages = ['Sélectionnez au moins une formule spécifique'];
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -197,25 +214,85 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      const formDataToSend = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        if (key === 'images') {
-          value.forEach((file: File) => {
-            formDataToSend.append('images', file);
-          });
-        } else if (key === 'services' || key === 'selectedPackages') {
-          formDataToSend.append(key, JSON.stringify(value));
-        } else {
-          formDataToSend.append(key, value);
+      // Format professional email content
+      const selectedServicesDetails = formData.services.map(serviceId => {
+        const service = services.find(s => s.id === serviceId);
+        return service ? service.title : serviceId;
+      }).join(', ');
+
+      const selectedPackagesDetails = formData.selectedPackages.map(packageName => {
+        // Find the package with its price
+        for (const service of services) {
+          const pkg = service.packages.find(p => p.name === packageName);
+          if (pkg) {
+            return `${pkg.name} (${pkg.price})`;
+          }
         }
+        return packageName;
+      }).join(', ');
+
+      const emailContent = `
+NOUVELLE DEMANDE DE DEVIS - SOLÈNE PHOTOGRAPHIE
+
+═══════════════════════════════════════════════════════════════
+
+📋 INFORMATIONS CLIENT
+═══════════════════════════════════════════════════════════════
+• Nom complet : ${formData.firstName} ${formData.lastName}
+• Email : ${formData.email}
+• Téléphone : ${formData.phone}
+• Localisation : ${formData.location}
+
+📸 PRESTATIONS DEMANDÉES
+═══════════════════════════════════════════════════════════════
+• Catégories : ${selectedServicesDetails}
+• Formules spécifiques : ${selectedPackagesDetails}
+
+📝 DÉTAILS DU PROJET
+═══════════════════════════════════════════════════════════════
+${formData.description ? `Description : ${formData.description}` : 'Aucune description fournie'}
+
+❓ QUESTIONS SPÉCIFIQUES
+═══════════════════════════════════════════════════════════════
+${formData.questions ? formData.questions : 'Aucune question spécifique'}
+
+🖼️ IMAGES D'INSPIRATION
+═══════════════════════════════════════════════════════════════
+• Nombre d'images jointes : ${formData.images.length}
+${formData.images.length > 0 ? '• Images d\'inspiration jointes à cette demande' : '• Aucune image sélectionnée'}
+
+═══════════════════════════════════════════════════════════════
+Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}
+      `;
+
+      const formDataToSend = new FormData();
+      
+      // Add formatted email content
+      formDataToSend.append('_subject', `Nouvelle demande de devis - ${formData.firstName} ${formData.lastName}`);
+      formDataToSend.append('message', emailContent);
+      formDataToSend.append('_replyto', formData.email);
+      formDataToSend.append('_format', 'plain');
+      
+      // Add individual fields for better processing
+      formDataToSend.append('firstName', formData.firstName);
+      formDataToSend.append('lastName', formData.lastName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('location', formData.location);
+      formDataToSend.append('services', selectedServicesDetails);
+      formDataToSend.append('packages', selectedPackagesDetails);
+      formDataToSend.append('description', formData.description);
+      formDataToSend.append('questions', formData.questions);
+
+      // Add image files to FormData (Basin supports file uploads)
+      formData.images.forEach((file, index) => {
+        formDataToSend.append(`image_${index}`, file);
       });
 
-      const response = await fetch('https://formspree.io/f/martin.contal@gmail.com', {
+      const response = await fetch(FORMSPREE_CONFIG.CONTACT_FORM_ENDPOINT, {
         method: 'POST',
         body: formDataToSend,
-        headers: {
-          'Accept': 'application/json'
-        }
+        // Remove headers for multipart/form-data (let browser set Content-Type with boundary)
       });
 
       if (response.ok) {
@@ -233,7 +310,8 @@ const Contact = () => {
           images: [],
         });
       } else {
-        throw new Error('Erreur lors de l\'envoi');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Erreur ${response.status}: ${response.statusText}`);
       }
     } catch (error) {
       setSubmitStatus('error');
@@ -244,28 +322,11 @@ const Contact = () => {
 
   return (
     <motion.div 
-      className="min-h-screen pt-20 bg-primary/10"
+      className="min-h-screen pt-48 bg-gray-50"
       {...pageTransition}
     >
-      {/* Hero Section */}
-      <section className="relative h-[30vh] flex items-center justify-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&w=2071&q=80)'
-          }}
-        />
-        <div className="absolute inset-0 bg-primary/60" />
-        <div className="relative text-center text-text">
-          <h1 className="text-4xl md:text-5xl font-perandory mb-4">Contact</h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto px-4">
-            Parlons de votre projet
-          </p>
-        </div>
-      </section>
-
-      {/* Form Section */}
-      <section className="py-16">
+      {/* Form Section - Moved up and simplified */}
+      <section className="pb-8">
         <div className="max-w-3xl mx-auto px-4">
           <form
             onSubmit={handleSubmit}
@@ -274,7 +335,7 @@ const Contact = () => {
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-text mb-1">
+                <label htmlFor="firstName" className="block text-sm font-medium text-black mb-1 font-playfair">
                   Prénom *
                 </label>
                 <input
@@ -283,17 +344,17 @@ const Contact = () => {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black ${
                     errors.firstName ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
                 {errors.firstName && (
-                  <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>
+                  <p className="mt-1 text-sm text-red-500 font-playfair">{errors.firstName}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-text mb-1">
+                <label htmlFor="lastName" className="block text-sm font-medium text-black mb-1 font-playfair">
                   Nom *
                 </label>
                 <input
@@ -302,17 +363,17 @@ const Contact = () => {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black ${
                     errors.lastName ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
                 {errors.lastName && (
-                  <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>
+                  <p className="mt-1 text-sm text-red-500 font-playfair">{errors.lastName}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-text mb-1">
+                <label htmlFor="email" className="block text-sm font-medium text-black mb-1 font-playfair">
                   Email *
                 </label>
                 <input
@@ -321,17 +382,17 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black ${
                     errors.email ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
                 {errors.email && (
-                  <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                  <p className="mt-1 text-sm text-red-500 font-playfair">{errors.email}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-text mb-1">
+                <label htmlFor="phone" className="block text-sm font-medium text-black mb-1 font-playfair">
                   Téléphone *
                 </label>
                 <input
@@ -340,17 +401,17 @@ const Contact = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black ${
                     errors.phone ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
                 {errors.phone && (
-                  <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+                  <p className="mt-1 text-sm text-red-500 font-playfair">{errors.phone}</p>
                 )}
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="location" className="block text-sm font-medium text-text mb-1">
+                <label htmlFor="location" className="block text-sm font-medium text-black mb-1 font-playfair">
                   Localisation *
                 </label>
                 <input
@@ -360,19 +421,19 @@ const Contact = () => {
                   value={formData.location}
                   onChange={handleInputChange}
                   placeholder="Ville, département..."
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black ${
                     errors.location ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
                 {errors.location && (
-                  <p className="mt-1 text-sm text-red-500">{errors.location}</p>
+                  <p className="mt-1 text-sm text-red-500 font-playfair">{errors.location}</p>
                 )}
               </div>
             </div>
 
             {/* Services Selection */}
             <div className="mb-8">
-              <label className="block text-sm font-medium text-text mb-3">
+              <label className="block text-sm font-medium text-black mb-3 font-playfair">
                 Catégories de prestations * (3 maximum)
               </label>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -381,10 +442,10 @@ const Contact = () => {
                     key={service.id}
                     type="button"
                     onClick={() => handleServiceChange(service.id)}
-                    className={`px-4 py-2 rounded-lg border text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 rounded-lg border text-sm font-medium transition-colors font-playfair ${
                       formData.services.includes(service.id)
-                        ? 'bg-primary text-text border-primary'
-                        : 'border-gray-200 hover:border-primary hover:bg-primary/10'
+                        ? `${service.color} ${service.textColor} border-transparent`
+                        : 'border-gray-200 hover:border-gray-400 hover:bg-gray-50 text-black'
                     }`}
                   >
                     {service.title}
@@ -392,14 +453,14 @@ const Contact = () => {
                 ))}
               </div>
               {errors.services && (
-                <p className="mt-1 text-sm text-red-500">{errors.services}</p>
+                <p className="mt-1 text-sm text-red-500 font-playfair">{errors.services}</p>
               )}
             </div>
 
             {/* Package Selection */}
             {formData.services.length > 0 && (
               <div className="mb-8">
-                <label className="block text-sm font-medium text-text mb-3">
+                <label className="block text-sm font-medium text-black mb-3 font-playfair">
                   Formules spécifiques *
                 </label>
                 <div className="space-y-4">
@@ -408,18 +469,18 @@ const Contact = () => {
                     if (!service) return null;
 
                     return (
-                      <div key={service.id} className="bg-primary/10 p-4 rounded-lg">
-                        <h3 className="font-medium mb-3">{service.title}</h3>
+                      <div key={service.id} className={`${service.color}/10 p-4 rounded-lg`}>
+                        <h3 className="font-medium mb-3 font-playfair">{service.title}</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {service.packages.map((pkg) => (
                             <button
                               key={pkg.name}
                               type="button"
                               onClick={() => handlePackageChange(pkg.name)}
-                              className={`flex items-center justify-between px-4 py-3 rounded-lg border text-sm transition-colors ${
+                              className={`flex items-center justify-between px-4 py-3 rounded-lg border text-sm transition-colors font-playfair ${
                                 formData.selectedPackages.includes(pkg.name)
-                                  ? 'bg-primary text-text border-primary'
-                                  : 'bg-white border-gray-200 hover:border-primary hover:bg-primary/10'
+                                  ? `${service.color} ${service.textColor} border-transparent`
+                                  : 'bg-white border-gray-200 hover:border-gray-400 hover:bg-gray-50 text-black'
                               }`}
                             >
                               <span>{pkg.name}</span>
@@ -432,14 +493,14 @@ const Contact = () => {
                   })}
                 </div>
                 {errors.selectedPackages && (
-                  <p className="mt-1 text-sm text-red-500">{errors.selectedPackages}</p>
+                  <p className="mt-1 text-sm text-red-500 font-playfair">{errors.selectedPackages}</p>
                 )}
               </div>
             )}
 
             {/* Description */}
             <div className="mb-8">
-              <label htmlFor="description" className="block text-sm font-medium text-text mb-1">
+              <label htmlFor="description" className="block text-sm font-medium text-black mb-1 font-playfair">
                 Description du projet (optionnel)
               </label>
               <textarea
@@ -448,28 +509,29 @@ const Contact = () => {
                 value={formData.description}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow"
+                className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black"
                 placeholder="Parlez-nous de votre projet..."
               />
             </div>
 
             {/* Image Upload */}
             <div className="mb-8">
-              <label className="block text-sm font-medium text-text mb-3">
-                Inspirations (optionnel - 10 images maximum)
+              <label className="block text-sm font-medium text-black mb-3 font-playfair">
+                Inspirations (optionnel - 10 images maximum, 100MB par fichier)
               </label>
               <div className="space-y-4">
+                
                 <div className="flex items-center justify-center w-full">
                   <label
                     htmlFor="images"
                     className="w-full flex flex-col items-center justify-center px-4 py-6 border-2 border-dashed border-primary/30 rounded-lg hover:bg-primary/5 cursor-pointer transition-colors"
                   >
                     <Upload className="w-8 h-8 text-primary-dark mb-2" />
-                    <span className="text-sm text-text">
-                      Cliquez pour ajouter vos images
+                    <span className="text-sm text-black font-playfair">
+                      Sélectionner vos images d'inspiration
                     </span>
-                    <span className="text-xs text-gray-400 mt-1">
-                      PNG, JPG jusqu'à 5MB
+                    <span className="text-xs text-gray-400 mt-1 font-playfair">
+                      PNG, JPG, GIF, WebP jusqu'à 100MB par fichier
                     </span>
                     <input
                       type="file"
@@ -482,7 +544,7 @@ const Contact = () => {
                   </label>
                 </div>
                 {imageError && (
-                  <p className="text-sm text-red-500">{imageError}</p>
+                  <p className="text-sm text-red-500 font-playfair">{imageError}</p>
                 )}
                 {formData.images.length > 0 && (
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -509,7 +571,7 @@ const Contact = () => {
 
             {/* Questions */}
             <div className="mb-8">
-              <label htmlFor="questions" className="block text-sm font-medium text-text mb-1">
+              <label htmlFor="questions" className="block text-sm font-medium text-black mb-1 font-playfair">
                 Questions (optionnel)
               </label>
               <textarea
@@ -518,7 +580,7 @@ const Contact = () => {
                 value={formData.questions}
                 onChange={handleInputChange}
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow"
+                className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black"
                 placeholder="Vos questions..."
               />
             </div>
@@ -528,11 +590,14 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`inline-flex items-center px-6 py-3 rounded-full text-white font-medium transition-colors ${
+                className={`inline-flex items-center px-6 py-3 rounded-full text-white font-medium transition-colors font-playfair ${
                   isSubmitting
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-accent hover:bg-primary-dark'
+                    : 'hover:bg-[#9a9130] transition-colors'
                 }`}
+                style={{
+                  backgroundColor: isSubmitting ? undefined : '#ada133'
+                }}
               >
                 {isSubmitting ? (
                   <span className="flex items-center">
@@ -554,15 +619,43 @@ const Contact = () => {
               </button>
 
               {submitStatus === 'success' && (
-                <p className="mt-4 text-green-600 text-center">
-                  Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
-                </p>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg"
+                >
+                  <div className="flex items-center justify-center">
+                    <div className="text-center">
+                      <h3 className="text-green-800 font-medium font-playfair mb-2">
+                        Demande envoyée avec succès !
+                      </h3>
+                      <p className="text-green-700 text-sm font-playfair">
+                        Votre demande de devis a été transmise à Solène.<br />
+                        Vous recevrez une réponse personnalisée sous 24-48h à l'adresse : <strong>{formData.email}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               )}
 
               {submitStatus === 'error' && (
-                <p className="mt-4 text-red-500 text-center">
-                  Une erreur est survenue lors de l'envoi. Veuillez réessayer.
-                </p>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg"
+                >
+                  <div className="flex items-center justify-center">
+                    <div className="text-center">
+                      <h3 className="text-red-800 font-medium font-playfair mb-2">
+                        ❌ Erreur lors de l'envoi
+                      </h3>
+                      <p className="text-red-700 text-sm font-playfair">
+                        Une erreur technique est survenue. Veuillez réessayer ou nous contacter directement à :<br />
+                        <strong>solenetrm.photographie@gmail.com</strong>
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               )}
             </div>
           </form>

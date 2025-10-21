@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const About = () => {
   return (
     <motion.div 
-      className="min-h-screen pt-20 bg-white"
+      className="min-h-screen pt-48 bg-white"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}

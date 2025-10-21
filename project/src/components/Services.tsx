@@ -255,7 +255,7 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen pt-32 bg-white">
+    <div className="min-h-screen pt-48 bg-white">
       {/* Navigation */}
       <div className="sticky top-32 z-40 bg-white/80 backdrop-blur-sm border-b border-gray-100">
         <div className="container mx-auto px-4">
@@ -266,20 +266,20 @@ const Services = () => {
                 onClick={() => scrollToSection(service.id)}
                 className={`group relative py-6 px-4 transition-colors ${
                   activeSection === service.id
-                    ? 'bg-primary text-text'
+                    ? 'bg-primary text-black'
                     : 'hover:bg-primary/20'
                 }`}
               >
                 <div className="flex flex-col items-center space-y-2">
                   <service.icon className={`w-6 h-6 ${
                     activeSection === service.id
-                      ? 'text-accent'
-                      : 'text-gray-600 group-hover:text-accent'
+                      ? 'text-black'
+                      : 'text-gray-600 group-hover:text-black'
                   }`} />
                   <span className={`text-sm font-medium ${
                     activeSection === service.id
-                      ? 'text-text'
-                      : 'text-gray-600 group-hover:text-text'
+                      ? 'text-black'
+                      : 'text-gray-600 group-hover:text-black'
                   }`}>
                     {service.title}
                   </span>
@@ -341,16 +341,16 @@ const Services = () => {
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className="text-xl font-display text-accent mb-1">{pkg.name}</h3>
+                        <h3 className="text-xl font-display text-black mb-1">{pkg.name}</h3>
                         {pkg.duration && (
                           <p className="text-gray-500 text-sm">{pkg.duration}</p>
                         )}
                       </div>
-                      <span className="text-xl font-semibold text-text">{pkg.price}</span>
+                      <span className="text-xl font-semibold text-black">{pkg.price}</span>
                     </div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 ml-4">
                       {pkg.features.map((feature, fidx) => (
-                        <li key={fidx} className="flex items-center text-text">
+                        <li key={fidx} className="flex items-center text-black">
                           <span className="w-1.5 h-1.5 bg-primary-dark rounded-full mr-2" />
                           {feature}
                         </li>
@@ -374,7 +374,7 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-display text-accent text-center mb-12">Options supplémentaires</h2>
+              <h2 className="text-3xl font-display text-black text-center mb-12">Options supplémentaires</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {additionalOptions.map((option, index) => (
                   <motion.div
@@ -385,8 +385,8 @@ const Services = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-all duration-300"
                   >
-                    <h3 className="font-medium text-text mb-2">{option.name}</h3>
-                    <p className="text-lg font-semibold text-accent">{option.price}</p>
+                    <h3 className="font-medium text-black mb-2">{option.name}</h3>
+                    <p className="text-lg font-semibold text-black">{option.price}</p>
                   </motion.div>
                 ))}
               </div>

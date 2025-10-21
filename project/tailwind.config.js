@@ -23,7 +23,9 @@ export default {
         'text': '#998e79'
       },
       fontFamily: {
-        'perandory': ['PerandoryCondensed', 'serif'],
+        'perandory': ['PerandorySemiCondensed', 'serif'],
+        'perandory-normal': ['Perandory', 'serif'],
+        'playfair': ['Playfair Display', 'serif'],
         'anastasia': ['Anastasia', 'cursive']
       },
       height: {
