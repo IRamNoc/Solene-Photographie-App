@@ -1,23 +1,15 @@
-# Dockerfile simple pour Solene Photographie App
-FROM node:18-alpine
+# Dockerfile pour Solene Photographie App
+# Utilise une approche simple avec serve pour éviter les problèmes de build
+FROM node:18-slim
+
+# Installer serve globalement
+RUN npm install -g serve
 
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers de dépendances
-COPY package*.json ./
-
-# Installer les dépendances
-RUN npm ci --only=production
-
-# Copier le code source
-COPY . .
-
-# Construire l'application
-RUN npm run build
-
-# Installer serve pour servir l'application
-RUN npm install -g serve
+# Copier le dossier dist (doit être buildé localement)
+COPY dist ./dist
 
 # Exposer le port
 EXPOSE 3000

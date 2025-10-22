@@ -3,7 +3,7 @@ node_modules
 npm-debug.log*
 
 # Build
-dist
+# dist - Nécessaire pour Docker
 .vite
 
 # Environnement
