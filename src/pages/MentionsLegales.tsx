@@ -16,33 +16,49 @@ const MentionsLegales: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="prose prose-lg max-w-none">
-          <div className="space-y-8">
-            
-            {/* Section 1 - Informations générales */}
+      <div className="bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+          <div className="text-center mb-6 sm:mb-12">
+            <h1 className="text-xl sm:text-4xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+              Mentions Légales
+            </h1>
+            <p className="text-sm sm:text-lg text-gray-600 font-playfair">
+              Solène_Trm Photographie
+            </p>
+          </div>
+
+          <div className="prose prose-sm sm:prose-lg max-w-none space-y-4 sm:space-y-8">
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                1. Informations générales
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Informations générales
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed space-y-2 text-justify">
-                <p><strong>Nom commercial :</strong> Solene Trm Photographie</p>
-                <p><strong>Entrepreneure individuelle :</strong> Solène Termeau</p>
-                <p><strong>Adresse du siège :</strong> 236 rue de Vaugirard, 75015 Paris</p>
-                <p><strong>Courriel :</strong> solenetrm.photographie@gmail.com</p>
-                <p><strong>Numéro SIRET :</strong> 935 069 856 00018</p>
-                <p><strong>Code APE :</strong> 7420Z — Activités photographiques</p>
-                <p><strong>Forme juridique :</strong> Entreprise individuelle</p>
-                <p><strong>Régime fiscal :</strong> Micro-entreprise, franchise en base de TVA (TVA non applicable, art. 293 B du CGI)</p>
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed space-y-2 sm:space-y-4 text-justify text-xs sm:text-base">
+                <p>
+                  <strong>Nom de l'entreprise :</strong> Solène_Trm Photographie
+                </p>
+                <p>
+                  <strong>Statut juridique :</strong> Micro-entreprise
+                </p>
+                <p>
+                  <strong>Numéro SIRET :</strong> 98765432100012
+                </p>
+                <p>
+                  <strong>Adresse :</strong> 123 Rue de la Photographie, 75001 Paris, France
+                </p>
+                <p>
+                  <strong>Téléphone :</strong> +33 1 23 45 67 89
+                </p>
+                <p>
+                  <strong>Email :</strong> contact@solenetrm-photographie.fr
+                </p>
               </div>
             </section>
 
-            {/* Section 2 - Activité */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                2. Activité
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Activité
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed text-justify">
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed space-y-2 sm:space-y-4 text-justify text-xs sm:text-base">
                 <p>
                   Photographe professionnelle : prestations de photographies de mariage, événements (remises de diplômes, soirées), portraits, séances studio ou extérieures, retouches et livraisons numériques ou imprimées sur demande.
                 </p>
@@ -51,10 +67,10 @@ const MentionsLegales: React.FC = () => {
 
             {/* Section 3 - Hébergement du site */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                3. Hébergement du site
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Hébergement du site
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed space-y-2 text-justify">
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed space-y-2 sm:space-y-4 text-justify text-xs sm:text-base">
                 <p><strong>Hébergeur :</strong> Contabo GmbH</p>
                 <p><strong>Adresse :</strong> Aschauer Strasse 32a, 81549 München, Allemagne</p>
                 <p><strong>Téléphone :</strong> +49 (0) 89 212 683 72</p>
@@ -66,10 +82,10 @@ const MentionsLegales: React.FC = () => {
 
             {/* Section 4 - Responsable de la publication */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                4. Responsable de la publication
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Responsable de la publication
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed space-y-2 text-justify">
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed space-y-2 sm:space-y-4 text-justify text-xs sm:text-base">
                 <p><strong>Solène Termeau</strong></p>
                 <p><strong>Contact :</strong> solenetrm.photographie@gmail.com</p>
               </div>
@@ -77,10 +93,10 @@ const MentionsLegales: React.FC = () => {
 
             {/* Section 5 - Propriété intellectuelle */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                5. Propriété intellectuelle
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Propriété intellectuelle
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed space-y-4 text-justify">
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed space-y-2 sm:space-y-4 text-justify text-xs sm:text-base">
                 <p>
                   L'ensemble du contenu de ce site (textes, photographies, logos, éléments graphiques…) est la propriété exclusive de Solene Trm Photographie, sauf mention contraire.
                 </p>
@@ -92,10 +108,10 @@ const MentionsLegales: React.FC = () => {
 
             {/* Section 6 - Protection des données personnelles */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                6. Protection des données personnelles
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Protection des données personnelles
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed space-y-4 text-justify">
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed space-y-2 sm:space-y-4 text-justify text-xs sm:text-base">
                 <p>
                   Les informations collectées via le formulaire de contact sont utilisées uniquement pour répondre aux demandes des utilisateurs.
                 </p>
@@ -110,10 +126,10 @@ const MentionsLegales: React.FC = () => {
 
             {/* Section 7 - Limitation de responsabilité */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                7. Limitation de responsabilité
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Limitation de responsabilité
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed text-justify">
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed text-justify text-xs sm:text-base">
                 <p>
                   Solene Trm Photographie ne pourra être tenue responsable des dommages directs ou indirects liés à l'utilisation du site ou à son indisponibilité temporaire.
                 </p>
@@ -122,10 +138,10 @@ const MentionsLegales: React.FC = () => {
 
             {/* Section 8 - Droit applicable */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 font-playfair mb-4">
-                8. Droit applicable
+              <h2 className="text-sm sm:text-2xl font-bold text-gray-900 font-playfair mb-2 sm:mb-4">
+                Droit applicable
               </h2>
-              <div className="text-gray-700 font-playfair leading-relaxed space-y-4 text-justify">
+              <div className="text-gray-700 font-playfair leading-tight sm:leading-relaxed space-y-2 sm:space-y-4 text-justify text-xs sm:text-base">
                 <p>
                   Les présentes mentions légales sont régies par le droit français.
                 </p>
@@ -142,7 +158,7 @@ const MentionsLegales: React.FC = () => {
       {/* Footer */}
       <div className="bg-gray-50 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm text-gray-500 font-playfair">
+          <p className="text-xs sm:text-sm text-gray-500 font-playfair">
             © 2024 Solène_Trm Photographie - Tous droits réservés
           </p>
         </div>

@@ -276,7 +276,7 @@ const Services = () => {
                       ? 'text-black'
                       : 'text-gray-600 group-hover:text-black'
                   }`} />
-                  <span className={`text-sm font-medium ${
+                  <span className={`text-sm font-medium mobile-nav-link ${
                     activeSection === service.id
                       ? 'text-black'
                       : 'text-gray-600 group-hover:text-black'

@@ -7,7 +7,7 @@ const Shop: React.FC = () => {
       <div className="text-center">
         {/* Barre de progression */}
         <motion.div
-          className="w-80 h-3 bg-white rounded-full overflow-hidden shadow-sm mb-6 mx-auto"
+          className="w-56 sm:w-80 h-1.5 sm:h-3 bg-white rounded-full overflow-hidden shadow-sm mb-3 sm:mb-6 mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -23,8 +23,7 @@ const Shop: React.FC = () => {
 
         {/* Texte "En construction" */}
         <motion.h1
-          className="font-perandory text-black tracking-wide mb-4"
-          style={{ fontSize: '2.5rem' }}
+          className="font-perandory text-black tracking-wide mb-2 sm:mb-4 text-lg sm:text-4xl px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -34,7 +33,7 @@ const Shop: React.FC = () => {
 
         {/* Message descriptif */}
         <motion.p
-          className="font-playfair text-black text-lg max-w-md mx-auto"
+          className="font-playfair text-black text-xs sm:text-lg max-w-xs sm:max-w-md mx-auto px-4 leading-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}

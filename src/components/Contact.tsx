@@ -253,7 +253,7 @@ NOUVELLE DEMANDE DE DEVIS - SOLÈNE PHOTOGRAPHIE
 ${formData.description ? `Description : ${formData.description}` : 'Aucune description fournie'}
 
 ❓ QUESTIONS SPÉCIFIQUES
-═══════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════
 ${formData.questions ? formData.questions : 'Aucune question spécifique'}
 
 🖼️ IMAGES D'INSPIRATION
@@ -335,7 +335,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
             {/* Personal Information */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-black mb-1 font-playfair">
+                <label htmlFor="firstName" className="block text-sm font-medium text-black mb-1 font-playfair mobile-form-label">
                   Prénom *
                 </label>
                 <input
@@ -344,7 +344,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black ${
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary outline-none transition-shadow font-playfair text-black mobile-form-input ${
                     errors.firstName ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
@@ -354,7 +354,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
               </div>
 
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-black mb-1 font-playfair">
+                <label htmlFor="lastName" className="block text-sm font-medium text-black mb-1 font-playfair mobile-form-label">
                   Nom *
                 </label>
                 <input
@@ -373,7 +373,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-black mb-1 font-playfair">
+                <label htmlFor="email" className="block text-sm font-medium text-black mb-1 font-playfair mobile-form-label">
                   Email *
                 </label>
                 <input
@@ -392,7 +392,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-black mb-1 font-playfair">
+                <label htmlFor="phone" className="block text-sm font-medium text-black mb-1 font-playfair mobile-form-label">
                   Téléphone *
                 </label>
                 <input
@@ -411,7 +411,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
               </div>
 
               <div className="md:col-span-2">
-                <label htmlFor="location" className="block text-sm font-medium text-black mb-1 font-playfair">
+                <label htmlFor="location" className="block text-sm font-medium text-black mb-1 font-playfair mobile-form-label">
                   Localisation *
                 </label>
                 <input
@@ -500,7 +500,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
 
             {/* Description */}
             <div className="mb-8">
-              <label htmlFor="description" className="block text-sm font-medium text-black mb-1 font-playfair">
+              <label htmlFor="description" className="block text-sm font-medium text-black mb-1 font-playfair mobile-form-label">
                 Description du projet (optionnel)
               </label>
               <textarea
@@ -571,7 +571,7 @@ Demande reçue le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLo
 
             {/* Questions */}
             <div className="mb-8">
-              <label htmlFor="questions" className="block text-sm font-medium text-black mb-1 font-playfair">
+              <label htmlFor="questions" className="block text-sm font-medium text-black mb-1 font-playfair mobile-form-label">
                 Questions (optionnel)
               </label>
               <textarea

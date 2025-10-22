@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import OptimizedImage from '../../OptimizedImage';
 
 const AboutSection: React.FC = () => {
   return (
@@ -15,14 +16,12 @@ const AboutSection: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="flex justify-center mb-8"
             >
-              <img
+              <OptimizedImage
                 src="/images/profile/pp.png"
                 alt="Portrait de Solène"
-                className="w-64 h-80 object-cover rounded-lg shadow-2xl"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='320' viewBox='0 0 256 320'%3E%3Crect width='256' height='320' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%236b7280'%3EPhoto de profil%3C/text%3E%3C/svg%3E";
-                }}
+                className="w-64 h-80 shadow-2xl"
+                quality="medium"
+                lazy={true}
               />
             </motion.div>
 
@@ -31,13 +30,13 @@ const AboutSection: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white rounded-lg shadow-lg p-6"
+              className="bg-white shadow-lg p-6 mobile-about-container"
             >
-              <h2 className="font-perandory text-3xl font-bold text-black mb-6 tracking-wide text-center">
+              <h2 className="font-perandory text-3xl font-bold text-black mb-6 tracking-wide text-center mobile-about-title">
                 À PROPOS
               </h2>
               
-              <div className="space-y-4 font-playfair text-black text-sm leading-relaxed text-center">
+              <div className="space-y-4 font-playfair text-black text-sm leading-relaxed text-center mobile-about-text">
                 <p>
                   Je photographie pour me souvenir.<br />
                   Des visages, des lumières, des saisons qui passent.<br />
@@ -78,14 +77,12 @@ const AboutSection: React.FC = () => {
             style={{ transform: 'translate(-2rem, 2rem)' }}
           >
             <div className="relative">
-              <img
+              <OptimizedImage
                 src="/images/profile/pp.png"
                 alt="Portrait de Solène"
-                className="w-80 h-96 object-cover rounded-lg shadow-2xl"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='384' viewBox='0 0 320 384'%3E%3Crect width='320' height='384' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='16' fill='%236b7280'%3EPhoto de profil%3C/text%3E%3C/svg%3E";
-                }}
+                className="w-80 h-96 shadow-2xl"
+                quality="medium"
+                lazy={true}
               />
             </div>
           </motion.div>
@@ -95,14 +92,14 @@ const AboutSection: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white rounded-lg shadow-lg p-8 md:p-12 pl-24 md:pl-32 ml-64 relative z-0"
+            className="bg-white shadow-lg p-8 md:p-12 pl-24 md:pl-32 ml-64 relative z-0"
             style={{ marginLeft: '16rem' }}
           >
-            <h2 className="font-perandory text-4xl md:text-5xl font-bold text-black mb-8 tracking-wide">
+            <h2 className="font-perandory text-4xl md:text-5xl font-bold text-black mb-8 tracking-wide mobile-about-title">
               À PROPOS
             </h2>
             
-            <div className="space-y-4 font-playfair text-black text-base leading-relaxed">
+            <div className="space-y-4 font-playfair text-black text-base leading-relaxed mobile-about-text">
               <p>
                 Je photographie pour me souvenir.<br />
                 Des visages, des lumières, des saisons qui passent.<br />

@@ -1,27 +1,32 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
-import Home from './pages/Home';
-import Prestations from './pages/Prestations';
-import PrestationsMenu from './pages/PrestationsMenu';
-import MariagePage from './pages/prestations/MariagePage';
-import ShootingPage from './pages/prestations/ShootingPage';
-import FamillePage from './pages/prestations/FamillePage';
-import ProfessionnelPage from './pages/prestations/ProfessionnelPage';
-import EvenementielPage from './pages/prestations/EvenementielPage';
-import AutresPage from './pages/prestations/AutresPage';
-import Contact from './components/Contact';
 import FooterSection from './components/sections/FooterSection/FooterSection';
-import GalleryList from './components/gallery/GalleryList';
-import About from './pages/About';
-import CGV from './pages/CGV';
-import MentionsLegales from './pages/MentionsLegales';
-import ShopPage from './pages/Shop';
-import GiftCard from './components/shop/GiftCard';
-import Collection from './components/shop/Collection';
 import LoadingScreen from './components/LoadingScreen';
 import ScrollToTop from './components/ScrollToTop';
+import ResourcePreloader from './components/ResourcePreloader';
+
+// Import des composants avec lazy loading
+import {
+  Home,
+  About,
+  Contact,
+  Prestations,
+  PrestationsMenu,
+  MariagePage,
+  ShootingPage,
+  FamillePage,
+  ProfessionnelPage,
+  EvenementielPage,
+  AutresPage,
+  ShopPage,
+  CGV,
+  MentionsLegales,
+  GiftCard,
+  Collection,
+  GalleryList
+} from './components/LazyComponents';
 
 const AnimatedRoutes = React.memo(() => {
   const location = useLocation();
@@ -30,26 +35,32 @@ const AnimatedRoutes = React.memo(() => {
     <>
       <ScrollToTop />
       <AnimatePresence mode="wait" initial={false}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/prestations" element={<PrestationsMenu />} />
-          <Route path="/prestations/mariage" element={<MariagePage />} />
-          <Route path="/prestations/shooting" element={<ShootingPage />} />
-          <Route path="/prestations/famille" element={<FamillePage />} />
-          <Route path="/prestations/professionnel" element={<ProfessionnelPage />} />
-          <Route path="/prestations/evenementiel" element={<EvenementielPage />} />
-          <Route path="/prestations/autres" element={<AutresPage />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery" element={<GalleryList />} />
-          <Route path="/boutique" element={<ShopPage />} />
-          <Route path="/boutique/carte-cadeau" element={<GiftCard />} />
-          <Route path="/boutique/collection/:collectionId" element={<Collection />} />
-          <Route path="/a-propos" element={<About />} />
-          <Route path="/cgv" element={<CGV />} />
-          <Route path="/legal/mentions" element={<MentionsLegales />} />
-          {/* Route catch-all pour rediriger vers la page d'accueil */}
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="w-8 h-8 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+          </div>
+        }>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/prestations" element={<PrestationsMenu />} />
+            <Route path="/prestations/mariage" element={<MariagePage />} />
+            <Route path="/prestations/shooting" element={<ShootingPage />} />
+            <Route path="/prestations/famille" element={<FamillePage />} />
+            <Route path="/prestations/professionnel" element={<ProfessionnelPage />} />
+            <Route path="/prestations/evenementiel" element={<EvenementielPage />} />
+            <Route path="/prestations/autres" element={<AutresPage />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/gallery" element={<GalleryList />} />
+            <Route path="/boutique" element={<ShopPage />} />
+            <Route path="/boutique/carte-cadeau" element={<GiftCard />} />
+            <Route path="/boutique/collection/:collectionId" element={<Collection />} />
+            <Route path="/a-propos" element={<About />} />
+            <Route path="/cgv" element={<CGV />} />
+            <Route path="/legal/mentions" element={<MentionsLegales />} />
+            {/* Route catch-all pour rediriger vers la page d'accueil */}
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </Suspense>
       </AnimatePresence>
     </>
   );
@@ -66,11 +77,11 @@ function App() {
     const hasVisited = sessionStorage.getItem('hasVisited');
     
     if (!hasVisited) {
-      // Première visite - afficher le loading screen plus longtemps
+      // Première visite - afficher le loading screen
       const timer = setTimeout(() => {
         setShowLoadingScreen(false);
         sessionStorage.setItem('hasVisited', 'true');
-      }, 4000); // Durée prolongée à 4 secondes
+      }, 2000); // Durée optimisée à 2 secondes
       
       return () => clearTimeout(timer);
     } else {
@@ -82,6 +93,8 @@ function App() {
 
   return (
     <Router>
+      <ResourcePreloader />
+      
       {/* LoadingScreen seulement au premier chargement */}
       <AnimatePresence>
         {isFirstLoad && showLoadingScreen && (

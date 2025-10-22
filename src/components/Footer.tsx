@@ -15,13 +15,13 @@ const Footer = () => {
           <div className="block md:hidden">
             {/* 1. Section brochure EN HAUT sur mobile */}
             <div className="text-center mb-8">
-              <h3 className="font-perandory text-lg mb-4 leading-tight">
+              <h3 className="font-perandory text-lg mb-4 leading-tight mobile-footer-title">
                 VOUS VOULEZ PARTAGER MES OFFRES<br />
                 AVEC VOS PROCHES ?
               </h3>
               <button
                 onClick={() => setIsBrochureModalOpen(true)}
-                className="bg-white text-[#ada133] px-6 py-2 rounded-full font-perandory text-sm hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
+                className="bg-white text-[#ada133] px-6 py-2 rounded-full font-perandory text-sm hover:bg-gray-100 transition-colors inline-flex items-center gap-2 mobile-footer-button"
               >
                 RECEVOIR LA BROCHURE PAR MAIL →
               </button>
@@ -30,8 +30,8 @@ const Footer = () => {
             {/* 2. Logo AU CENTRE sur mobile */}
             <div className="text-center mb-8">
               <Link to="/" className="inline-block">
-                <div className="w-20 h-32 border-2 border-white rounded-full flex items-center justify-center">
-                  <span className="font-perandory text-white text-3xl">S.T</span>
+                <div className="w-20 h-32 border-2 border-white rounded-full flex items-center justify-center mobile-footer-logo">
+                  <span className="font-perandory text-white text-3xl mobile-footer-logo-text">S.T</span>
                 </div>
               </Link>
             </div>
@@ -40,12 +40,12 @@ const Footer = () => {
             <div className="text-center mb-8">
               <nav className="space-y-2">
                 <div>
-                  <Link to="/galeries" className="block font-perandory text-white hover:text-gray-200 transition-colors text-sm">
+                  <Link to="/galeries" className="block font-perandory text-white hover:text-gray-200 transition-colors text-sm mobile-footer-nav">
                     GALERIES
                   </Link>
                 </div>
                 <div>
-                  <Link to="/contact" className="block font-perandory text-white hover:text-gray-200 transition-colors text-sm">
+                  <Link to="/contact" className="block font-perandory text-white hover:text-gray-200 transition-colors text-sm mobile-footer-nav">
                     PREMIER CONTACT
                   </Link>
                 </div>

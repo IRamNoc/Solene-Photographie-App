@@ -55,10 +55,10 @@ const Header = () => {
             }`}
           >
             <Link to="/" className="block text-center">
-              <h1 className="font-perandory font-medium text-black tracking-[0.05em] pt-6 mb-0 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+              <h1 className="font-perandory font-medium text-black tracking-[0.05em] pt-6 mb-0 text-2xl sm:text-3xl md:text-4xl lg:text-5xl mobile-header-title">
                 SOLENE TERMEAU
               </h1>
-              <p className="font-['Pinyon_Script'] text-black pb-2 -mt-1 text-base sm:text-lg md:text-xl">
+              <p className="font-['Pinyon_Script'] text-black pb-2 -mt-1 text-base sm:text-lg md:text-xl mobile-header-subtitle">
                 Photographie de famille
               </p>
             </Link>
@@ -84,7 +84,7 @@ const Header = () => {
                     <li key={path} className="relative flex-shrink-0">
                       <Link
                         to={path}
-                        className="font-perandory text-black tracking-[0.05em] transition-colors whitespace-nowrap py-2 px-1 block text-sm sm:text-base md:text-lg lg:text-xl hover:text-[#ada133]"
+                        className="font-perandory text-black tracking-[0.05em] transition-colors whitespace-nowrap py-2 px-1 block text-sm sm:text-base md:text-lg lg:text-xl hover:text-[#ada133] mobile-nav-link"
                         onMouseEnter={() => handleMouseEnter(path)}
                         onMouseLeave={handleMouseLeave}
                       >

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import OptimizedImage from '../../OptimizedImage';
 
 const GallerySection2: React.FC = () => {
   return (
@@ -18,22 +19,12 @@ const GallerySection2: React.FC = () => {
               key={imageNumber}
               className="aspect-[3/4] overflow-hidden m-0 p-0 border-0"
             >
-              <img
+              <OptimizedImage
                 src={`/images/about-gallery-2/${imageNumber}.png`}
                 alt={`Galerie photo ${imageNumber}`}
-                className="w-full h-full object-cover m-0 p-0 border-0 block"
-                onError={(e) => {
-                  // Fallback vers JPEG si PNG n'existe pas
-                  const target = e.target as HTMLImageElement;
-                  if (target.src.includes('.png')) {
-                    target.src = `/images/about-gallery-2/${imageNumber}.jpeg`;
-                  } else if (target.src.includes('.jpeg')) {
-                    target.src = `/images/about-gallery-2/${imageNumber}.jpg`;
-                  } else {
-                    // Placeholder si aucune image n'est trouvée
-                    target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI2NyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNHB4IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2UgaW50cm91dmFibGU8L3RleHQ+PC9zdmc+';
-                  }
-                }}
+                className="w-full h-full"
+                quality="low"
+                lazy={true}
               />
             </div>
           ))}

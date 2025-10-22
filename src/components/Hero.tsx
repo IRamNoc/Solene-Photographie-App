@@ -59,7 +59,7 @@ const Hero = () => {
               {/* TITRE PRINCIPAL */}
                <div style={{ marginBottom: 'clamp(16px, 3vw, 20px)' /* ESPACE APRÈS TITRE - RESPONSIVE */ }}>
                  <h1 
-                   className="font-perandory-normal font-normal text-black tracking-wide"
+                   className="font-perandory-normal font-normal text-black tracking-wide mobile-hero-title"
                    style={{
                      fontSize: 'clamp(36px, 9vw, 55px)', /* TAILLE TITRE RESPONSIVE - 36px mobile, 55px desktop (augmenté) */
                      lineHeight: '1.1', /* INTERLIGNE TITRE - Modifiable (1.1=serré, 1.2=normal, 1.3=aéré) */
@@ -70,7 +70,7 @@ const Hero = () => {
                    PHOTOGRAPHIE,
                  </h1>
                  <p 
-                   className="font-perandory-normal italic text-black uppercase"
+                   className="font-perandory-normal italic text-black uppercase mobile-hero-subtitle"
                    style={{
                      fontSize: 'clamp(14px, 3vw, 16px)', /* TAILLE SOUS-TITRE - RESPONSIVE */
                      marginBottom: 'clamp(12px, 2.5vw, 16px)', /* ESPACE SOUS SOUS-TITRE - RESPONSIVE */
@@ -111,7 +111,7 @@ const Hero = () => {
                  {/* Citation I - Alignée à droite */}
                  <div>
                    <p 
-                     className="font-playfair text-black italic"
+                     className="font-playfair text-black italic mobile-hero-citations"
                      style={{
                        fontSize: 'clamp(16px, 4vw, 18.6px)', /* TAILLE CITATIONS - RESPONSIVE */
                        lineHeight: '1.5', /* INTERLIGNE CITATIONS - Modifiable */
@@ -119,37 +119,37 @@ const Hero = () => {
                      }}
                    >
                      <span className="font-medium not-italic">I.</span> L'art de suspendre le temps, de figer un souvenir<br />
-                     dans l'éternité pour le chérir bien après qu'il ait disparu.
+                     dans l'éternité pour le chérir après qu'il ait disparu.
                    </p>
                  </div>
                  
                  {/* Citation II - Alignée à droite */}
                  <div>
                    <p 
-                     className="font-playfair text-black italic"
+                     className="font-playfair text-black italic mobile-hero-citations"
                      style={{
                        fontSize: 'clamp(16px, 4vw, 18.6px)', /* TAILLE CITATIONS - RESPONSIVE */
                        lineHeight: '1.5', /* INTERLIGNE CITATIONS */
                        textAlign: 'right' /* ALIGNEMENT CITATION II - Changé à droite comme demandé */
                      }}
                    >
-                     <span className="font-medium not-italic">II.</span> L'acte de traduire en image non pas seulement ce que l'on voit,<br />
-                     mais ce que l'on ressent : une émotion, une atmosphère, une lumière
+                     <span className="font-medium not-italic">II.</span> L'acte de traduire en image ce que l'on voit,<br />
+                     mais aussi ce que l'on ressent : émotion, atmosphère, lumière
                    </p>
                  </div>
                  
                  {/* Citation III - Alignée à droite */}
                  <div>
                    <p 
-                     className="font-playfair text-black italic"
+                     className="font-playfair text-black italic mobile-hero-citations"
                      style={{
                        fontSize: 'clamp(16px, 4vw, 18.6px)', /* TAILLE CITATIONS - RESPONSIVE */
                        lineHeight: '1.5', /* INTERLIGNE CITATIONS */
                        textAlign: 'right' /* ALIGNEMENT CITATION III - Reste à droite */
                      }}
                    >
-                     <span className="font-medium not-italic">III.</span> L'écriture de petites et grandes histoires de vie,<br />
-                     sans l'usage des mots, à partager et à transmettre
+                     <span className="font-medium not-italic">III.</span> L'écriture d'histoires de vie sans mots,<br />
+                     à partager et à transmettre
                    </p>
                  </div>
                </div>

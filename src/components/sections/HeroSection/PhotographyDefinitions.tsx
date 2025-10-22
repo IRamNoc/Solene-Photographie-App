@@ -3,7 +3,7 @@ import React from 'react';
 const PhotographyDefinitions: React.FC = () => {
   return (
     <div 
-      className="flex-shrink-0 bg-white rounded-lg shadow-sm"
+      className="flex-shrink-0 bg-white shadow-sm"
       style={{
         padding: 'clamp(16px, 4vw, 48px)' /* PADDING INTERNE BLOC BLANC RESPONSIVE - RÉDUIT MOBILE */
       }}
@@ -13,7 +13,7 @@ const PhotographyDefinitions: React.FC = () => {
         <h1 
           className="font-perandory font-normal text-black tracking-wide"
           style={{
-            fontSize: 'clamp(28px, 7vw, 55px)', /* TAILLE TITRE RÉDUITE MOBILE - 28px au lieu de 36px */
+            fontSize: 'clamp(20px, 5vw, 55px)', /* TAILLE TITRE ENCORE PLUS RÉDUITE MOBILE - 20px au lieu de 28px */
             lineHeight: '1.0', /* INTERLIGNE TRÈS SERRÉ POUR MOBILE */
             marginBottom: '6px',
             textAlign: 'left'
@@ -25,7 +25,7 @@ const PhotographyDefinitions: React.FC = () => {
 
       {/* DÉFINITIONS ÉTYMOLOGIQUES - BLOC UNIFORME */}
       <div style={{ 
-        marginBottom: 'clamp(16px, 3vw, 32px)', /* ESPACE RÉDUIT MOBILE */
+        marginBottom: 'clamp(12px, 2vw, 32px)', /* ESPACE ENCORE PLUS RÉDUIT MOBILE */
         display: 'flex',
         flexDirection: 'column',
         gap: '0px'
@@ -33,8 +33,8 @@ const PhotographyDefinitions: React.FC = () => {
         <p 
           className="font-playfair italic text-black"
           style={{
-            fontSize: 'clamp(11px, 2.8vw, 13.1px)', /* TAILLE RÉDUITE MOBILE */
-            lineHeight: '1.6', /* INTERLIGNE RÉDUIT MOBILE */
+            fontSize: 'clamp(8px, 2vw, 13.1px)', /* TAILLE ENCORE PLUS RÉDUITE MOBILE - 8px au lieu de 11px */
+            lineHeight: '1.4', /* INTERLIGNE ENCORE PLUS RÉDUIT MOBILE */
             margin: '0',
             textAlign: 'left'
           }}
@@ -44,8 +44,8 @@ const PhotographyDefinitions: React.FC = () => {
         <p 
           className="font-playfair text-black"
           style={{
-            fontSize: 'clamp(11px, 2.8vw, 13.1px)', /* TAILLE RÉDUITE MOBILE */
-            lineHeight: '1.6', /* INTERLIGNE RÉDUIT MOBILE */
+            fontSize: 'clamp(8px, 2vw, 13.1px)', /* TAILLE ENCORE PLUS RÉDUITE MOBILE - 8px au lieu de 11px */
+            lineHeight: '1.4', /* INTERLIGNE ENCORE PLUS RÉDUIT MOBILE */
             margin: '0',
             textAlign: 'left'
           }}
@@ -55,8 +55,8 @@ const PhotographyDefinitions: React.FC = () => {
         <p 
           className="font-playfair text-black"
           style={{
-            fontSize: 'clamp(11px, 2.8vw, 13.1px)', /* TAILLE RÉDUITE MOBILE */
-            lineHeight: '1.6', /* INTERLIGNE RÉDUIT MOBILE */
+            fontSize: 'clamp(8px, 2vw, 13.1px)', /* TAILLE ENCORE PLUS RÉDUITE MOBILE - 8px au lieu de 11px */
+            lineHeight: '1.4', /* INTERLIGNE ENCORE PLUS RÉDUIT MOBILE */
             margin: '0',
             textAlign: 'left'
           }}
@@ -66,49 +66,49 @@ const PhotographyDefinitions: React.FC = () => {
       </div>
 
       {/* CITATIONS NUMÉROTÉES */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 2.5vw, 16px)' /* GAP RÉDUIT MOBILE */ }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 1.5vw, 16px)' /* GAP ENCORE PLUS RÉDUIT MOBILE */ }}>
         {/* Citation I - Alignée à droite */}
         <div>
           <p 
-            className="font-playfair text-black italic"
+            className="font-playfair text-black italic mobile-hero-citations"
             style={{
-              fontSize: 'clamp(14px, 3.5vw, 18.6px)', /* TAILLE CITATIONS RÉDUITE MOBILE - 14px au lieu de 18.6px */
-              lineHeight: '1.3', /* INTERLIGNE RÉDUIT MOBILE */
+              fontSize: 'clamp(10px, 2.5vw, 18.6px)', /* TAILLE CITATIONS ENCORE PLUS RÉDUITE MOBILE - 10px au lieu de 14px */
+              lineHeight: '1.2', /* INTERLIGNE ENCORE PLUS RÉDUIT MOBILE */
               textAlign: 'right'
             }}
           >
-            <span className="font-medium italic">I.</span> L'art de suspendre le temps, de figer un souvenir<br />
-            dans l'éternité pour le chérir bien après qu'il ait disparu.
+            <span className="font-medium italic">I.</span> L'art de suspendre le temps, de figer<br />
+            un souvenir dans l'éternité pour le chérir.
           </p>
         </div>
         
         {/* Citation II - Alignée à droite */}
         <div>
           <p 
-            className="font-playfair text-black italic"
+            className="font-playfair text-black italic mobile-hero-citations"
             style={{
-              fontSize: 'clamp(14px, 3.5vw, 18.6px)', /* TAILLE CITATIONS RÉDUITE MOBILE */
-              lineHeight: '1.3', /* INTERLIGNE RÉDUIT MOBILE */
+              fontSize: 'clamp(10px, 2.5vw, 18.6px)', /* TAILLE CITATIONS ENCORE PLUS RÉDUITE MOBILE */
+              lineHeight: '1.2', /* INTERLIGNE ENCORE PLUS RÉDUIT MOBILE */
               textAlign: 'right'
             }}
           >
-            <span className="font-medium italic">II.</span> L'acte de traduire en image non pas seulement ce que l'on voit,<br />
-            mais ce que l'on ressent : une émotion, une atmosphère, une lumière
+            <span className="font-medium italic">II.</span> L'acte de traduire en image ce que l'on voit,<br />
+            mais aussi ce que l'on ressent : émotion, atmosphère, lumière
           </p>
         </div>
         
         {/* Citation III - Alignée à droite */}
         <div>
           <p 
-            className="font-playfair text-black italic"
+            className="font-playfair text-black italic mobile-hero-citations"
             style={{
-              fontSize: 'clamp(14px, 3.5vw, 18.6px)', /* TAILLE CITATIONS RÉDUITE MOBILE */
-              lineHeight: '1.3', /* INTERLIGNE RÉDUIT MOBILE */
+              fontSize: 'clamp(10px, 2.5vw, 18.6px)', /* TAILLE CITATIONS ENCORE PLUS RÉDUITE MOBILE */
+              lineHeight: '1.2', /* INTERLIGNE ENCORE PLUS RÉDUIT MOBILE */
               textAlign: 'right'
             }}
           >
-            <span className="font-medium italic">III.</span> L'écriture de petites et grandes histoires de vie,<br />
-            sans l'usage des mots, à partager et à transmettre
+            <span className="font-medium italic">III.</span> L'écriture d'histoires de vie sans mots,<br />
+            à partager et à transmettre
           </p>
         </div>
       </div>

@@ -1,0 +1,263 @@
+/* Mobile Optimized Styles - Tailles de police plus petites et espacements réduits */
+
+/* Optimisations globales pour mobile */
+@media (max-width: 768px) {
+  
+  /* === TITRES PRINCIPAUX === */
+  .mobile-title-xl {
+    font-size: 1.75rem !important; /* au lieu de text-3xl (1.875rem) */
+    line-height: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .mobile-title-lg {
+    font-size: 1.5rem !important; /* au lieu de text-2xl (1.5rem) */
+    line-height: 1.75rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .mobile-title-md {
+    font-size: 1.25rem !important; /* au lieu de text-xl (1.25rem) */
+    line-height: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* === TEXTE COURANT === */
+  .mobile-text-base {
+    font-size: 0.875rem !important; /* au lieu de text-base (1rem) */
+    line-height: 1.25rem !important;
+  }
+  
+  .mobile-text-sm {
+    font-size: 0.75rem !important; /* au lieu de text-sm (0.875rem) */
+    line-height: 1rem !important;
+  }
+
+  /* === ESPACEMENTS RÉDUITS === */
+  .mobile-spacing-sm {
+    padding: 0.75rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  
+  .mobile-spacing-md {
+    padding: 1rem !important;
+    margin: 0.75rem 0 !important;
+  }
+  
+  .mobile-spacing-lg {
+    padding: 1.5rem !important;
+    margin: 1rem 0 !important;
+  }
+
+  /* === HEADER OPTIMISÉ === */
+  .mobile-header-title {
+    font-size: 1.5rem !important; /* Plus petit que text-2xl */
+    line-height: 1.75rem !important;
+    padding-top: 1rem !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .mobile-header-subtitle {
+    font-size: 0.875rem !important; /* Plus petit que text-base */
+    line-height: 1.25rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-top: -0.25rem !important;
+  }
+  
+  .mobile-nav-link {
+    font-size: 0.75rem !important; /* Plus petit que text-sm */
+    padding: 0.5rem 0.25rem !important;
+  }
+
+  /* === SECTIONS ABOUT === */
+  .mobile-about-title {
+    font-size: 1.75rem !important; /* Plus petit que text-3xl */
+    line-height: 2rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .mobile-about-text {
+    font-size: 0.75rem !important; /* Plus petit que text-sm */
+    line-height: 1.125rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .mobile-about-container {
+    padding: 1rem !important; /* Plus compact que p-6 */
+  }
+
+  /* === FOOTER OPTIMISÉ === */
+  .mobile-footer-title {
+    font-size: 1rem !important; /* Plus petit que text-lg */
+    line-height: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .mobile-footer-button {
+    font-size: 0.75rem !important; /* Plus petit que text-sm */
+    padding: 0.5rem 1rem !important;
+  }
+  
+  .mobile-footer-nav {
+    font-size: 0.75rem !important; /* Plus petit que text-sm */
+  }
+  
+  .mobile-footer-logo {
+    width: 4rem !important; /* Plus petit que w-20 */
+    height: 6rem !important; /* Plus petit que h-32 */
+  }
+  
+  .mobile-footer-logo-text {
+    font-size: 1.5rem !important; /* Plus petit que text-3xl */
+  }
+
+  /* === CONTACT FORM === */
+  .mobile-form-label {
+    font-size: 0.75rem !important; /* Plus petit que text-sm */
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .mobile-form-input {
+    padding: 0.75rem !important; /* Plus compact que py-3 */
+    font-size: 0.875rem !important;
+  }
+  
+  .mobile-form-button {
+    font-size: 0.875rem !important;
+    padding: 0.75rem 1.5rem !important;
+  }
+
+  /* === PRESTATIONS === */
+  .mobile-prestation-title {
+    font-size: 1.5rem !important; /* Plus petit que text-3xl */
+    line-height: 1.75rem !important;
+  }
+  
+  .mobile-prestation-text {
+    font-size: 0.875rem !important; /* Plus petit que text-base */
+    line-height: 1.25rem !important;
+  }
+  
+  .mobile-package-title {
+    font-size: 1.25rem !important; /* Plus petit que text-2xl */
+    line-height: 1.5rem !important;
+  }
+  
+  .mobile-package-price {
+    font-size: 1.125rem !important; /* Plus petit que text-xl */
+    line-height: 1.375rem !important;
+  }
+
+  /* === GALERIES === */
+  .mobile-gallery-spacing {
+    gap: 0.5rem !important; /* Plus compact */
+    padding: 0.5rem !important;
+  }
+  
+  .mobile-gallery-title {
+    font-size: 1.25rem !important;
+    line-height: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* === MODALES === */
+  .mobile-modal-title {
+    font-size: 1.125rem !important; /* Plus petit que text-xl */
+    line-height: 1.375rem !important;
+  }
+  
+  .mobile-modal-text {
+    font-size: 0.75rem !important; /* Plus petit que text-sm */
+    line-height: 1rem !important;
+  }
+  
+  .mobile-modal-button {
+    font-size: 0.75rem !important;
+    padding: 0.75rem !important;
+  }
+
+  /* === HERO SECTION === */
+  .mobile-hero-title {
+    font-size: 2rem !important; /* Plus petit que text-4xl */
+    line-height: 2.25rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .mobile-hero-text {
+    font-size: 0.875rem !important; /* Plus petit que text-lg */
+    line-height: 1.25rem !important;
+  }
+  
+  .mobile-hero-citations {
+  font-size: clamp(11px, 2.8vw, 18.6px) !important;
+  line-height: 1.4 !important;
+}
+
+@media (max-width: 480px) {
+  .mobile-hero-citations {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .mobile-hero-citations {
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+  }
+}
+
+  /* === SERVICES === */
+  .mobile-service-title {
+    font-size: 1.5rem !important; /* Plus petit que text-3xl */
+    line-height: 1.75rem !important;
+  }
+  
+  .mobile-service-description {
+    font-size: 0.875rem !important; /* Plus petit que text-lg */
+    line-height: 1.25rem !important;
+  }
+
+  /* === UTILITAIRES === */
+  .mobile-compact {
+    padding: 0.5rem !important;
+    margin: 0.25rem 0 !important;
+  }
+  
+  .mobile-extra-compact {
+    padding: 0.25rem !important;
+    margin: 0.125rem 0 !important;
+  }
+  
+  /* Réduction des marges générales */
+  .mobile-reduce-margins {
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Réduction des paddings généraux */
+  .mobile-reduce-padding {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+/* Optimisations spécifiques pour très petits écrans */
+@media (max-width: 480px) {
+  .mobile-xs-title {
+    font-size: 1.25rem !important;
+    line-height: 1.5rem !important;
+  }
+  
+  .mobile-xs-text {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+  }
+  
+  .mobile-xs-spacing {
+    padding: 0.5rem !important;
+    margin: 0.25rem 0 !important;
+  }
+}
