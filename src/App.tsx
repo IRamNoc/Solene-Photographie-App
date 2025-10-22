@@ -14,14 +14,7 @@ import EvenementielPage from './pages/prestations/EvenementielPage';
 import AutresPage from './pages/prestations/AutresPage';
 import Contact from './components/Contact';
 import FooterSection from './components/sections/FooterSection/FooterSection';
-import { GalleryLogin } from './components/gallery/GalleryLogin';
-import AdminGallery from './components/gallery/AdminGallery';
-import { AuthGuard } from './components/auth/AuthGuard';
 import GalleryList from './components/gallery/GalleryList';
-import { GalleryView } from './components/gallery/GalleryView';
-import Shop from './components/shop/Shop';
-import Collection from './components/shop/Collection';
-import GiftCard from './components/shop/GiftCard';
 import About from './pages/About';
 import CGV from './pages/CGV';
 import MentionsLegales from './pages/MentionsLegales';
@@ -45,23 +38,10 @@ const AnimatedRoutes = React.memo(() => {
           <Route path="/prestations/evenementiel" element={<EvenementielPage />} />
           <Route path="/prestations/autres" element={<AutresPage />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery/login" element={<GalleryLogin />} />
           <Route path="/gallery" element={<GalleryList />} />
-          <Route path="/gallery/view/:id" element={<GalleryView />} />
           <Route path="/a-propos" element={<About />} />
           <Route path="/cgv" element={<CGV />} />
           <Route path="/legal/mentions" element={<MentionsLegales />} />
-          <Route path="/boutique" element={<Shop />} />
-          <Route path="/boutique/collection/:id" element={<Collection />} />
-          <Route path="/boutique/carte-cadeau" element={<GiftCard />} />
-          <Route 
-            path="/admin/gallery" 
-            element={
-              <AuthGuard>
-                <AdminGallery />
-              </AuthGuard>
-            } 
-          />
           {/* Route catch-all pour rediriger vers la page d'accueil */}
           <Route path="*" element={<Home />} />
         </Routes>

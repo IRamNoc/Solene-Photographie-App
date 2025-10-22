@@ -33,3 +33,6 @@ secrets/
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary project folder (should not be recreated)
+project/
