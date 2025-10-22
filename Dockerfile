@@ -5,14 +5,15 @@ FROM --platform=linux/amd64 node:18-slim AS builder
 WORKDIR /app
 
 # Copier les fichiers de configuration
-COPY package*.json ./
+COPY package.json ./
 COPY tsconfig*.json ./
 COPY vite.config.ts ./
 COPY tailwind.config.js ./
 COPY postcss.config.js ./
 
 # Installer toutes les dépendances (dev incluses pour le build)
-RUN npm ci
+# Note: On évite de copier package-lock.json pour contourner le bug npm/rollup
+RUN npm install
 
 # Copier le code source
 COPY src ./src

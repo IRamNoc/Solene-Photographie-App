@@ -1,5 +1,6 @@
 # Dépendances
 node_modules
+package-lock.json
 npm-debug.log*
 
 # Build (maintenant buildé dans le conteneur)
