@@ -6,11 +6,12 @@ FROM node:18-alpine AS builder
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers de dépendances
-COPY package*.json ./
+# Copier seulement package.json (pas package-lock.json)
+COPY package.json ./
 
-# Installer les dépendances
-RUN npm ci --only=production --silent
+# Nettoyer le cache npm et installer les dépendances
+RUN npm cache clean --force && \
+    npm install --only=production --silent
 
 # Copier le code source
 COPY . .

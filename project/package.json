@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm cache clean --force",
     "build": "vite build",
     "start": "serve dist -s -l 3000",
     "clean-install": "npm cache clean --force && npm install",
