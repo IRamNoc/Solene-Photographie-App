@@ -1,17 +1,18 @@
-# Dockerfile multi-stage pour application React/Vite
+# Dockerfile simple et efficace pour application React/Vite
 
-# Stage 1: Build
-FROM node:18-alpine AS builder
+FROM node:18-alpine
 
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier seulement package.json (pas package-lock.json)
-COPY package.json ./
+# Copier package.json et package-lock.json
+COPY package*.json ./
 
-# Nettoyer le cache npm et installer les dépendances
-RUN npm cache clean --force && \
-    npm install --only=production --silent
+# Supprimer node_modules et package-lock.json s'ils existent
+RUN rm -rf node_modules package-lock.json
+
+# Installation propre des dépendances
+RUN npm install
 
 # Copier le code source
 COPY . .
@@ -19,38 +20,11 @@ COPY . .
 # Build de l'application
 RUN npm run build
 
-# Stage 2: Production avec Nginx
-FROM nginx:alpine AS production
+# Installer serve pour servir l'application
+RUN npm install -g serve
 
-# Copier la configuration nginx personnalisée
-COPY nginx.conf /etc/nginx/nginx.conf
+# Exposer le port 3000
+EXPOSE 3000
 
-# Copier les fichiers buildés depuis le stage builder
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Exposer le port 80
-EXPOSE 80
-
-# Commande par défaut
-CMD ["nginx", "-g", "daemon off;"]
-
-# Stage 3: Development
-FROM node:18-alpine AS development
-
-# Définir le répertoire de travail
-WORKDIR /app
-
-# Copier les fichiers de dépendances
-COPY package*.json ./
-
-# Installer toutes les dépendances (dev incluses)
-RUN npm install --silent
-
-# Copier le code source
-COPY . .
-
-# Exposer le port de développement
-EXPOSE 3003
-
-# Commande de développement
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "3003"]
+# Servir l'application buildée
+CMD ["serve", "-s", "dist", "-l", "3000"]
