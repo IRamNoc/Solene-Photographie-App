@@ -63,7 +63,7 @@ const FooterSection: React.FC = () => {
             >
               <div className="space-y-2 text-center">
                 <p className="font-perandory text-sm leading-tight tracking-wider">
-                  VOUS VOULEZ PARTAGER LES OFFRES<br />
+                  VOUS VOULEZ PARTAGER MES OFFRES<br />
                   AVEC VOS PROCHES?
                 </p>
                 <button 
@@ -104,13 +104,13 @@ const FooterSection: React.FC = () => {
               <nav className="space-y-2 text-center">
                 <Link 
                   to="/gallery" 
-                  className="block font-perandory text-lg hover:text-white/80 transition-colors tracking-wider"
+                  className="block font-perandory text-sm hover:text-white/80 transition-colors tracking-wider"
                 >
                   GALERIES
                 </Link>
                 <Link 
                   to="/contact" 
-                  className="block font-perandory text-lg hover:text-white/80 transition-colors tracking-wider"
+                  className="block font-perandory text-sm hover:text-white/80 transition-colors tracking-wider"
                 >
                   PREMIER CONTACT
                 </Link>
@@ -172,7 +172,7 @@ const FooterSection: React.FC = () => {
             >
               <div className="space-y-3">
                 <p className="font-perandory text-lg leading-relaxed tracking-wider text-center lg:text-left">
-                  VOUS VOULEZ PARTAGER LES OFFRES<br />
+                  VOUS VOULEZ PARTAGER MES OFFRES<br />
                   AVEC VOS PROCHES?
                 </p>
                 <div className="flex justify-start">

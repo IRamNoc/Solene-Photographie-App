@@ -32,11 +32,11 @@ const AboutSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-white shadow-lg p-6 mobile-about-container"
             >
-              <h2 className="font-perandory text-3xl font-bold text-black mb-6 tracking-wide text-center mobile-about-title">
+              <h2 className="font-perandory font-bold text-black mb-6 tracking-wide text-left mobile-about-title" style={{ fontSize: '1rem', lineHeight: '1.25rem' }}>
                 À PROPOS
               </h2>
               
-              <div className="space-y-4 font-playfair text-black text-sm leading-relaxed text-center mobile-about-text">
+              <div className="space-y-4 font-playfair text-black leading-relaxed text-left mobile-about-text" style={{ fontSize: '0.5rem', lineHeight: '0.75rem' }}>
                 <p>
                   Je photographie pour me souvenir.<br />
                   Des visages, des lumières, des saisons qui passent.<br />

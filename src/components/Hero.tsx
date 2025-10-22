@@ -161,7 +161,7 @@ const Hero = () => {
                 ==========================================
               */}
               <div 
-                className="flex flex-col justify-end w-full md:w-[35%] mt-8 md:mt-0"
+                className="flex flex-col justify-end w-full md:w-[35%] mt-8 md:mt-0 pb-10 md:pb-0"
                 style={{
                   minHeight: 'clamp(150px, 20vh, 250px)', /* HAUTEUR MINIMALE TRÈS RÉDUITE (zone violette minimale) */
                   paddingTop: 'clamp(5px, 8vw, 80px)' /* 🎯 ZONE 1 - POSITION CORRIGÉE (légèrement au-dessus ligne basse bloc blanc) */

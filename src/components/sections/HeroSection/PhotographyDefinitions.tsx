@@ -3,7 +3,7 @@ import React from 'react';
 const PhotographyDefinitions: React.FC = () => {
   return (
     <div 
-      className="flex-shrink-0 bg-white shadow-sm"
+      className="flex-shrink-0 bg-white shadow-sm mt-10 md:mt-0"
       style={{
         padding: 'clamp(16px, 4vw, 48px)' /* PADDING INTERNE BLOC BLANC RESPONSIVE - RÉDUIT MOBILE */
       }}
