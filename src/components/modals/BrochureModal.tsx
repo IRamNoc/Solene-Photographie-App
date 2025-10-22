@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Mail } from 'lucide-react';
+import { sendBrochureRequest } from '../../services/emailService';
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -13,13 +14,15 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // EmailJS est initialisé automatiquement dans le service
+
   const categories = [
     { id: 'MARIAGE', name: 'Mariage', color: '#f86d6d', textColor: '#fdd7e0' },
     { id: 'SHOOTING', name: 'Shooting', color: '#ffc3e2', textColor: '#f86d6d' },
     { id: 'FAMILLE', name: 'Famille', color: '#aad8e0', textColor: '#ebf3f7' },
     { id: 'PROFESSIONNEL', name: 'Professionnel', color: '#fdf6b8', textColor: '#f1bb45' },
     { id: 'EVENEMENTIEL', name: 'Événementiel', color: '#f1bb45', textColor: '#fdf6b8' },
-    { id: 'AUTRES', name: 'Autres services', color: '#ada133', textColor: '#ffffff' }
+    { id: 'AUTRES', name: 'Toutes mes prestations', color: '#ada133', textColor: '#ffffff' }
   ];
 
   const handleCategoryToggle = (categoryId: string) => {
@@ -43,14 +46,22 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose }) => {
     setSubmitStatus('idle');
 
     try {
-      // Simulation d'envoi de brochure
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setSubmitStatus('success');
-      setTimeout(() => {
-        onClose();
-        resetForm();
-      }, 3000);
+      // Envoi réel des brochures via EmailJS
+      const success = await sendBrochureRequest({
+        email: email,
+        selectedCategories: selectedCategories,
+        message: 'Demande de brochures depuis le site web'
+      });
+
+      if (success) {
+        setSubmitStatus('success');
+        setTimeout(() => {
+          onClose();
+          resetForm();
+        }, 3000);
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
       setSubmitStatus('error');

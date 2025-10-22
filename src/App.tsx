@@ -17,6 +17,9 @@ import GalleryList from './components/gallery/GalleryList';
 import About from './pages/About';
 import CGV from './pages/CGV';
 import MentionsLegales from './pages/MentionsLegales';
+import ShopPage from './pages/Shop';
+import GiftCard from './components/shop/GiftCard';
+import Collection from './components/shop/Collection';
 import LoadingScreen from './components/LoadingScreen';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -38,6 +41,9 @@ const AnimatedRoutes = React.memo(() => {
           <Route path="/prestations/autres" element={<AutresPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<GalleryList />} />
+          <Route path="/boutique" element={<ShopPage />} />
+          <Route path="/boutique/carte-cadeau" element={<GiftCard />} />
+          <Route path="/boutique/collection/:collectionId" element={<Collection />} />
           <Route path="/a-propos" element={<About />} />
           <Route path="/cgv" element={<CGV />} />
           <Route path="/legal/mentions" element={<MentionsLegales />} />
