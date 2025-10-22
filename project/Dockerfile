@@ -5,13 +5,13 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copier package.json seulement
-COPY project/package.json ./
+COPY package.json ./
 
 # Installation propre des dépendances
 RUN npm install
 
 # Copier tout le code source
-COPY project/ ./
+COPY . ./
 
 # Build de l'application
 RUN npm run build
