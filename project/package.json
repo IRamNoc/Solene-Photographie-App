@@ -11,10 +11,7 @@
     "build": "vite build",
     "start": "serve dist -s -l 3000",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "docker:dev": "docker-compose -f docker-compose.dev.yml up --build",
-    "docker:prod": "docker-compose -f docker-compose.prod.yml up --build",
-    "docker:down": "docker-compose down"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

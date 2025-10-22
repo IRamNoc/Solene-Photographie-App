@@ -1,29 +1,26 @@
-# Dockerfile pour Dokploy - Application React/Vite
+# Dockerfile simple et fiable pour Dokploy
 FROM node:18-alpine
 
-# Définir le répertoire de travail
+# Répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers de dépendances du projet
+# Copier package.json seulement
 COPY project/package.json ./
-
-# Supprimer node_modules et package-lock.json s'ils existent
-RUN rm -rf node_modules package-lock.json
 
 # Installation propre des dépendances
 RUN npm install
 
-# Copier le code source du projet
-COPY project/ .
+# Copier tout le code source
+COPY project/ ./
 
 # Build de l'application
 RUN npm run build
 
-# Installer serve pour servir l'application
+# Installer serve globalement
 RUN npm install -g serve
 
-# Exposer le port 3000
+# Port d'exposition
 EXPOSE 3000
 
-# Servir l'application buildée
+# Commande de démarrage
 CMD ["serve", "-s", "dist", "-l", "3000"]
