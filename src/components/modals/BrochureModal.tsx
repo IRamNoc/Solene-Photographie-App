@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Mail } from 'lucide-react';
-import { sendBrochureLinks } from '../../services/emailService';
 
 interface BrochureModalProps {
   isOpen: boolean;
@@ -44,20 +43,14 @@ const BrochureModal: React.FC<BrochureModalProps> = ({ isOpen, onClose }) => {
     setSubmitStatus('idle');
 
     try {
-      const success = await sendBrochureLinks({
-        email,
-        selectedCategories,
-      });
-
-      if (success) {
-        setSubmitStatus('success');
-        setTimeout(() => {
-          onClose();
-          resetForm();
-        }, 3000);
-      } else {
-        setSubmitStatus('error');
-      }
+      // Simulation d'envoi de brochure
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setSubmitStatus('success');
+      setTimeout(() => {
+        onClose();
+        resetForm();
+      }, 3000);
     } catch (error) {
       console.error('Erreur lors de l\'envoi:', error);
       setSubmitStatus('error');

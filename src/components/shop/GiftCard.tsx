@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Heart, ArrowLeft, ShoppingCart } from 'lucide-react';
-import { toast } from 'sonner';
 
 const GiftCard = () => {
   const [amount, setAmount] = useState<number>(100);
@@ -18,7 +17,7 @@ const GiftCard = () => {
   const handleAddToCart = () => {
     setIsAdding(true);
     setTimeout(() => {
-      toast.success(`Carte cadeau de ${amount}€ ajoutée au panier`);
+      // Simulation d'ajout au panier
       setIsAdding(false);
     }, 1000);
   };

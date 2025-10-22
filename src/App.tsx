@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { Toaster } from 'sonner';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Prestations from './pages/Prestations';
@@ -77,8 +76,6 @@ function App() {
 
   return (
     <Router>
-      <Toaster position="top-center" />
-      
       {/* LoadingScreen seulement au premier chargement */}
       <AnimatePresence>
         {isFirstLoad && showLoadingScreen && (
