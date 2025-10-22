@@ -1,6 +1,29 @@
-# Dockerfile pour Solene Photographie App
-# Utilise une approche simple avec serve pour éviter les problèmes de build
-FROM node:18-slim
+# Dockerfile pour Solene Photographie App - Multi-stage build pour Dokploy
+FROM --platform=linux/amd64 node:18-slim AS builder
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier les fichiers de configuration
+COPY package*.json ./
+COPY tsconfig*.json ./
+COPY vite.config.ts ./
+COPY tailwind.config.js ./
+COPY postcss.config.js ./
+
+# Installer toutes les dépendances (dev incluses pour le build)
+RUN npm ci
+
+# Copier le code source
+COPY src ./src
+COPY public ./public
+COPY index.html ./
+
+# Build l'application
+RUN npm run build
+
+# Stage de production
+FROM --platform=linux/amd64 node:18-slim AS production
 
 # Installer serve globalement
 RUN npm install -g serve
@@ -8,8 +31,8 @@ RUN npm install -g serve
 # Définir le répertoire de travail
 WORKDIR /app
 
-# Copier le dossier dist (doit être buildé localement)
-COPY dist ./dist
+# Copier le build depuis le stage builder
+COPY --from=builder /app/dist ./dist
 
 # Exposer le port
 EXPOSE 3000
