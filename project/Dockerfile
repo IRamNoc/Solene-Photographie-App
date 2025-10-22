@@ -4,11 +4,11 @@ FROM node:18-alpine
 # Répertoire de travail
 WORKDIR /app
 
-# Copier package.json seulement
-COPY package.json ./
+# Copier les fichiers de dépendances
+COPY package*.json ./
 
-# Installation propre des dépendances
-RUN npm install
+# Installation des dépendances (toutes pour le build)
+RUN npm install && npm cache clean --force
 
 # Copier tout le code source
 COPY . ./

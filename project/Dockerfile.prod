@@ -12,8 +12,8 @@ WORKDIR /app
 # Copier les fichiers de configuration des dépendances
 COPY package*.json ./
 
-# Installer les dépendances
-RUN npm ci --only=production && npm cache clean --force
+# Installer les dépendances (toutes pour le build)
+RUN npm install && npm cache clean --force
 
 # Copier le code source
 COPY . .
