@@ -12,6 +12,14 @@ WORKDIR /app
 # Copier les fichiers de configuration des dépendances
 COPY package*.json ./
 
+# Vérifier que les fichiers sont bien copiés et déboguer
+RUN echo "=== Contenu du répertoire /app ===" && \
+    ls -la /app/ && \
+    echo "=== Vérification package.json ===" && \
+    test -f /app/package.json && echo "package.json trouvé" || echo "package.json MANQUANT" && \
+    echo "=== Début du package.json ===" && \
+    head -5 /app/package.json
+
 # Installer les dépendances (toutes pour le build)
 RUN npm install && npm cache clean --force
 
