@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # Backend Node.js API
+  backend:
+    build:
+      context: ./project/backend
+      dockerfile: Dockerfile
+    container_name: solene-backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - CORS_ORIGIN=${FRONTEND_URL:-http://localhost:3000}
+    ports:
+      - "3001:3001"
+    volumes:
+      - backend_uploads:/app/uploads
+    networks:
+      - solene-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend React App
+  frontend:
+    build:
+      context: ./project
+      dockerfile: Dockerfile.prod
+      args:
+        - VITE_API_URL=${BACKEND_URL:-http://localhost:3001}
+    container_name: solene-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - solene-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Reverse Proxy (Nginx)
+  nginx:
+    image: nginx:alpine
+    container_name: solene-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - solene-network
+
+volumes:
+  backend_uploads:
+    driver: local
+
+networks:
+  solene-network:
+    driver: bridge
